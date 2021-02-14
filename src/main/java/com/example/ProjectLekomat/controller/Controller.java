@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Controller {
 
-    @GetMapping("/get")
-    String get(){
-        String get = "ok";
-        return get;
+    @GetMapping("/health")
+    String getHealthCheck(){
+        return "ok";
     }
 
 
