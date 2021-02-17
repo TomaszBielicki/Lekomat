@@ -35,7 +35,6 @@ public class LockerService {
 
         lockerRepo.save(lockerEntity);
 
-        LockerResponse lockerResp = new ModelMapper().map(lockerRequest, LockerResponse.class);
-        return lockerResp;
+        return new ModelMapper().map(lockerEntity, LockerResponse.class);
     }
 }
