@@ -24,7 +24,7 @@ public class LockerController {
         }
 
         @PostMapping
-        public void addLocker(@RequestBody @Validated LockerRequest lockerRequest){
-        lockerService.addLocker(lockerRequest);
+        public LockerResponse addLocker(@RequestBody @Validated LockerRequest lockerRequest){
+        return lockerService.addLocker(lockerRequest);
         }
 }
