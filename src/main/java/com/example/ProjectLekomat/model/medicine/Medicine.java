@@ -1,4 +1,4 @@
-package com.example.ProjectLekomat.model.locker;
+package com.example.ProjectLekomat.model.medicine;
 
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Locker {
+public class Medicine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +23,7 @@ public class Locker {
 
     @NotNull
     @NotFound
-    private String lockerId;
-
-    private long code;
-    private boolean status;
-    private String createAt;
-
+    private String medicineId;
+    private String name;
 
 }
