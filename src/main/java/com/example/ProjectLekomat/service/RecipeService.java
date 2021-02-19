@@ -2,6 +2,7 @@ package com.example.ProjectLekomat.service;
 
 
 import com.example.ProjectLekomat.exception.IdNotFoundException;
+import com.example.ProjectLekomat.exception.NameNotFoundException;
 import com.example.ProjectLekomat.model.recipe.Recipe;
 import com.example.ProjectLekomat.model.recipe.RecipeRequest;
 import com.example.ProjectLekomat.model.recipe.RecipeResponse;
@@ -37,6 +38,17 @@ public class RecipeService {
         recipeRepo.save(recipeEntity);
 
         return new ModelMapper().map(recipeEntity, RecipeResponse.class);
+    }
+
+    public void findByOwner(String name){
+        Recipe recipe = recipeRepo.findByOwner(name);
+
+        if(recipe != null && recipe.isStatus()){
+            //todo ustawić status na bazie
+            recipe.setStatus(false);
+            return;
+        }
+        throw new NameNotFoundException(name);
     }
     }
 
