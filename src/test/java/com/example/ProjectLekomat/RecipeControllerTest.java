@@ -1,9 +1,9 @@
 package com.example.ProjectLekomat;
 
-import com.example.ProjectLekomat.controller.MedicineController;
+import com.example.ProjectLekomat.controller.RecipeController;
 import com.example.ProjectLekomat.exception.IdNotFoundException;
-import com.example.ProjectLekomat.model.medicine.MedicineResponse;
-import com.example.ProjectLekomat.service.MedicineService;
+import com.example.ProjectLekomat.model.recipe.RecipeResponse;
+import com.example.ProjectLekomat.service.RecipeService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,39 +24,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(MedicineController.class)
+@WebMvcTest(RecipeController.class)
 public class RecipeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private MedicineService medicineService;
-    private List<MedicineResponse> medicineList = new ArrayList<>();
+    private RecipeService recipeService;
+    private List<RecipeResponse> recipeList = new ArrayList<>();
 
     @Test
-    public void shouldReturnMedicineById() throws Exception{
-        medicineList.add( new MedicineResponse("gripex"));
-        when(medicineService.findById(1L)).thenReturn(medicineList.get(0));
-        RequestBuilder request = MockMvcRequestBuilders.get("/medicine/1")
+    public void shouldReturnRecipeById() throws Exception{
+        recipeList.add( new RecipeResponse("123", "gripex", "Tomek"));
+        when(recipeService.findById(1L)).thenReturn(recipeList.get(0));
+        RequestBuilder request = MockMvcRequestBuilders.get("/recipe/1")
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk())
                 .andExpect(content().json("{\n" +
-                        "   \"name\": gripex\n" +
+                        "    \"recipeId\": \"123\",\n" +
+                        "    \"description\": \"gripex\",\n" +
+                        "    \"owner\": \"Tomek\"\n" +
                         "}")).andReturn();
     }
 
     @Test
-    public void shouldNotReturnMedicineByIdWhenNotFound() throws Exception{
-        when(medicineService.findById(1L)).thenThrow(new IdNotFoundException(1));
-        RequestBuilder request = MockMvcRequestBuilders.get("/medicine/1")
+    public void shouldNotReturnRecipeByIdWhenNotFound() throws Exception{
+        when(recipeService.findById(1L)).thenThrow(new IdNotFoundException(1));
+        RequestBuilder request = MockMvcRequestBuilders.get("/recipe/1")
                 .accept(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(request).andExpect(status().isNotFound())
                 .andExpect(content().string("Id: 1 not found")).andReturn();
     }
 
     @Test
-    public void shouldCreateMedicine() throws Exception{
-        RequestBuilder request = MockMvcRequestBuilders.post("/medicine")
+    public void shouldCreateRecipe() throws Exception{
+        RequestBuilder request = MockMvcRequestBuilders.post("/recipe")
                 .accept(MediaType.APPLICATION_JSON)
                 .content("{\n" +
                         "   \"name\": \"gripex\"\n" +
