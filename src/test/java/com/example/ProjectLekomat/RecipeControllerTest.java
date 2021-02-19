@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MedicineController.class)
-public class MedicineControllerTest {
+public class RecipeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -59,7 +59,7 @@ public class MedicineControllerTest {
         RequestBuilder request = MockMvcRequestBuilders.post("/medicine")
                 .accept(MediaType.APPLICATION_JSON)
                 .content("{\n" +
-                        "   \"name\": gripex\n" +
+                        "   \"name\": \"gripex\"\n" +
                         "}")
                 .contentType(MediaType.APPLICATION_JSON);
         MvcResult result = mockMvc.perform(request).andExpect(status().isOk()).andReturn();
