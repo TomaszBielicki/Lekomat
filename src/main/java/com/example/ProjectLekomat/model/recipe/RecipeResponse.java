@@ -1,23 +1,23 @@
-package com.example.ProjectLekomat.model.locker;
+package com.example.ProjectLekomat.model.recipe;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.BatchSize;
+import org.hibernate.annotations.NotFound;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LockerRequest {
+public class RecipeResponse {
 
     @NotNull
-    private long     code;
-
+    @NotFound
+    private String recipeId;
     @NotNull
-    private boolean status;
-
+    private String description;
+    private String owner;
 
 }
