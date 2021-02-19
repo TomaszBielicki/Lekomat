@@ -1,4 +1,4 @@
-package com.example.ProjectLekomat.model.medicine;
+package com.example.ProjectLekomat.model.recipe;
 
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Medicine {
+public class Recipe {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,9 @@ public class Medicine {
 
     @NotNull
     @NotFound
-    private String medicineId;
-    private String name;
+    private String recipeId;
+    private String description;
+    private String owner;
+    private boolean status;
 
 }

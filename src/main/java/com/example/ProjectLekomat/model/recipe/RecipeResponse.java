@@ -1,4 +1,4 @@
-package com.example.ProjectLekomat.model.medicine;
+package com.example.ProjectLekomat.model.recipe;
 
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -11,10 +11,13 @@ import org.hibernate.annotations.NotFound;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MedicineRequest {
+public class RecipeResponse {
 
     @NotNull
     @NotFound
-    private String medicineId;
-    private String name;
+    private String recipeId;
+    @NotNull
+    private String description;
+    private String owner;
+
 }
