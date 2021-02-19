@@ -14,5 +14,7 @@ import javax.persistence.Entity;
 public class TransactionRequest {
 
     private String name;
+    private String surname;
+    private String pesel;
 
 }

@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RecipeRepo extends JpaRepository<Recipe, Long> {
 
-    Recipe findByOwner(String owner);
+    Recipe findByOwnerHash(String ownerHash);
 }

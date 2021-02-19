@@ -33,22 +33,22 @@ public class RecipeService {
         String entityName = recipeEntity.getDescription();
         recipeEntity.setRecipeId(recipeId);
         recipeEntity.setDescription(entityName);
-        recipeEntity.setOwner(recipeRequest.getOwner());
+        recipeEntity.setOwnerHash(recipeRequest.getOwnerHash());
 
         recipeRepo.save(recipeEntity);
 
         return new ModelMapper().map(recipeEntity, RecipeResponse.class);
     }
 
-    public void findByOwner(String name){
-        Recipe recipe = recipeRepo.findByOwner(name);
+    public void findByOwner(String hash){
+        Recipe recipe = recipeRepo.findByOwnerHash(hash);
 
         if(recipe != null && recipe.isStatus()){
             //todo ustawić status na bazie
             recipe.setStatus(false);
             return;
         }
-        throw new NameNotFoundException(name);
+        throw new NameNotFoundException(hash);
     }
     }
 
