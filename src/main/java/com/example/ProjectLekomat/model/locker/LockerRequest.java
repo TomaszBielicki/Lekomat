@@ -14,7 +14,7 @@ import org.hibernate.annotations.BatchSize;
 public class LockerRequest {
 
     @NotNull
-    private long     code;
+    private long    code;
 
     @NotNull
     private boolean status;

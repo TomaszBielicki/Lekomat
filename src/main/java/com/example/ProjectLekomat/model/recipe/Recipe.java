@@ -25,7 +25,7 @@ public class Recipe {
     @NotFound
     private String recipeId;
     private String description;
-    private String owner;
+    private String ownerHash;
     private boolean status;
 
 }
