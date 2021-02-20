@@ -44,7 +44,6 @@ public class RecipeService {
         Recipe recipe = recipeRepo.findByOwnerHash(hash);
 
         if(recipe != null && recipe.isStatus()){
-            //todo ustawić status na bazie
             recipe.setStatus(false);
             return;
         }

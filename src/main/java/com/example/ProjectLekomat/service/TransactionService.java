@@ -4,8 +4,6 @@ import com.example.ProjectLekomat.model.Transaction.TransactionRequest;
 import com.example.ProjectLekomat.model.Transaction.TransactionResponse;
 import com.example.ProjectLekomat.model.locker.LockerRequest;
 import com.example.ProjectLekomat.model.locker.LockerResponse;
-import com.example.ProjectLekomat.model.recipe.Recipe;
-import com.example.ProjectLekomat.repo.RecipeRepo;
 import com.google.common.hash.Hashing;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +26,7 @@ public class TransactionService {
                 .hashString(hashName, StandardCharsets.UTF_8)
                 .toString();
         System.out.println(sha256hex);
-        recipeService.findByOwner(transactionRequest.getName());
+        recipeService.findByOwner(sha256hex);
 
         long generateCode =(int)(Math.random()*9000)+1000;
 
